@@ -7,7 +7,6 @@
 
 import SwiftCompilerPlugin
 import SwiftSyntax
-import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
 /// Define the `DebugPreview` Macro
@@ -16,11 +15,15 @@ public struct DebugPreviewMacro: ExpressionMacro {
         of node: MacroExpansionExprSyntax,
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
-        return """
+        // Generate the appropriate Swift code for the debug preview.
+        let previewCode = """
         #if DEBUG
         #Preview \(node.argumentList)
         #endif
         """
+        
+        // Wrap the string inside ExprSyntax to return a valid expression.
+        return try ExprSyntax(previewCode)
     }
 }
 
