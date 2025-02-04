@@ -10,4 +10,5 @@
 @freestanding(expression)
 public macro stringify<T>(_ value: T) -> (T, String) = #externalMacro(module: "PreviewMacrosMacros", type: "StringifyMacro")
 
+@freestanding(expression)
 public macro DebugPreview<Content>(content: Content) = #externalMacro(module: "PreviewMacros", type: "DebugPreviewMacro")
